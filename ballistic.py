@@ -1,34 +1,40 @@
 #Gravitational constant =g
 #IVM=initial velo mag IH=initial height
 #time step(0.1), initial angle (30)
-
-
-
-
 #HP=highest point
 #Distance to ground =DG
 #Flight time=FT
-#y velo=22.5, x velo=39.0
+
 
 import numpy
 import math as ma
 import matplotlib
 import matplotlib.pyplot as plt
 
+IH ="Initial height"
+IVM ="Initial velocity"
+IA ="initial angle"
+HP ="highest point"
+FT ="flight time"
+DG ="distance to ground"
+
 g=-9.8
 IH=10
 IVM=45
 t=0.5
-IA=ma.pi/6.
-HP=((45**2.)*ma.sin(IA))/(2*g)
-DG=HP+IH
-FT=(2*IVM*ma.sin(IA))/g
+IA = 30
 
+# Vx = x velocity, constant
+# Vyi = y initial velocity, not constant
+Vx=IVM*ma.cos(IA*ma.pi/180)
+Vyi=IVM*ma.sin(IA*ma.pi/180)
 
-arr=numpy.array([0.2,0.4,0.6,0.8,1.0,1.2,1.4,1.6,1.8,2.0])
-y=22.5+g*arr
-x=39*arr
+# Flight time
+FT = (2.0*Vyi)/(-g)
+print (FT,"fight time")
 
-plt.figure()
-plt.scatter(x,y)
-plt.show()
+#distance to ground and highest point
+HP = (Vyi**2)/(-2*g)
+DG = HP + IH
+print (HP,"highest point")
+print (DG,"distance to ground")
